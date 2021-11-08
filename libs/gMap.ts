@@ -531,7 +531,10 @@ export default class Map {
                 promises.push(new Promise((resolve, reject) => {
                     const image = new Image();
                     image.onload = () => {
-                        exportLayerHelper.putImage(image as HTMLImageElement);
+					// 修改保存mask背景色不透明的问题-weijingru
+						const width = bounds.width,
+								height = bounds.height;
+                        exportLayerHelper.putImageWithWH(image as HTMLImageElement, width, height);
                         resolve(true);
                     };
                     image.onerror = () => {

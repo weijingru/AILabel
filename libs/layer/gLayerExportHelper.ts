@@ -82,6 +82,12 @@ export default class ExportHelperLayer  {
     addObjects(objects: Array<IObjectItem>) {
         _forEach(objects, (object: IObjectItem) => this.addObject(object));
     }
+	
+	// 修改保存mask后背景不透明的问题-weijingru
+    putImageWithWH(image: HTMLImageElement, width, height) {
+		this.canvasContext.clearRect(0, 0, width, height);
+        this.canvasContext.drawImage(image, 0, 0);
+    }
 
     // 添加imag至当前canvas
     putImage(image: HTMLImageElement) {
